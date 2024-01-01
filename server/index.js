@@ -2,10 +2,10 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-dotenv.config();
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 const app = express();
+dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,8 +24,9 @@ const chain = prompt.pipe(chatModel);
 
 app.post("/create", async (req, res) => {
   console.log(req.body);
+  const input_data = req.body.prompt_data;
   const data = await chain.invoke({
-    input: "write a resume for a full stack developer role",
+    input: input_data,
   });
   res.send(data);
 });
