@@ -13,6 +13,7 @@ const Builder = () => {
     description: "",
     achievements: "",
   });
+  const [formerrors, setFormerrors] = useState({});
 
   const handlechange = (e) => {
     setformdata((prev) => ({
@@ -21,14 +22,18 @@ const Builder = () => {
     }));
   };
 
+  const validate_data = (values) => {
+    const errors = { firstname: "", lastname: "", role: "", company_name: "" };
+    if (values.firstname === "") errors.firstname = "Firstname is required";
+    if (values.lastname === "") errors.lastname = "Lastname is required";
+    if (values.role === "") errors.role = "Role is required";
+    if (values.company_name === "")
+      errors.company_name = "Company Name is required";
+    return errors;
+  };
   const handlealldata = () => {
-    if (
-      formdata.firstname !== "" &&
-      formdata.lastname !== "" &&
-      formdata.role !== "" &&
-      formdata.company_name !== ""
-    )
-      console.log(formdata);
+    setFormerrors(validate_data(formdata));
+    console.log(formerrors);
   };
   return (
     <div className="lg:flex lg:flex-col justify-center items-center lg:h-[90vh] md:h-[90vh] font-poppins">
@@ -41,16 +46,19 @@ const Builder = () => {
               placeholder="First name*"
               type="text"
               name="firstname"
+              value={formdata.firstname}
               className="bg-black border-b border-[#858585] text-white placeholder:text-[#858585] outline-none py-2 w-full"
             />
+            <p>{formerrors.firstname}</p>
             <input
               onChange={handlechange}
               placeholder="Last name*"
               type="text"
+              value={formdata.lastname}
               name="lastname"
               className="bg-black border-b border-[#858585] text-white placeholder:text-[#858585] outline-none py-2 w-full"
             />
-
+            <p>{formerrors.lastname}</p>
             <input
               onChange={handlechange}
               placeholder="Hiring Manager Name"
@@ -63,15 +71,21 @@ const Builder = () => {
               placeholder="Role you are applying*"
               type="text"
               name="role"
+              value={formdata.role}
               className="bg-black border-b border-[#858585] text-white placeholder:text-[#858585] outline-none py-2 w-full"
             />
+            <p>{formerrors.role}</p>
+
             <input
               onChange={handlechange}
               placeholder="Company name*"
               type="text"
+              value={formdata.company_name}
               name="company_name"
               className="bg-black border-b border-[#858585] text-white placeholder:text-[#858585] outline-none py-2 w-full"
             />
+            <p>{formerrors.company_name}</p>
+
             <input
               onChange={handlechange}
               placeholder="Experience in years"
