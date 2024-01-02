@@ -30,7 +30,7 @@
   .card::after {
     content: "";
     position: absolute;
-    inset: -0.2rem;
+    inset: -0.3rem;
     z-index: -1;
     background: conic-gradient(
       from var(--gradient-angle),
