@@ -69,9 +69,9 @@ const Builder = () => {
   };
 
   return (
-    <div className="lg:flex justify-center items-center lg:h-[90vh] md:h-[90vh] font-poppins gap-16">
+    <div className="lg:flex md:flex-none justify-center items-center lg:h-[90vh] font-poppins gap-16">
       <div className="basis-1/4">
-        <div className=" text-white relative lg:card rounded-[1rem] md:card bg-black p-10 lg:items-center flex flex-col gap-10 ">
+        <div className=" text-white relative lg:card rounded-[1rem] bg-black p-10 lg:items-center flex flex-col gap-10 ">
           <div className="font-semibold text-2xl">Personel Information</div>
           <form action="submit" className="lg:flex lg:gap-20 md:flex">
             <div className="grid gap-6 text-xl w-full">
@@ -191,7 +191,7 @@ const Builder = () => {
               Please Wait...
             </div>
           ) : (
-            <ReactMarkdown className="p-8 text-lg">
+            <ReactMarkdown className="p-8 lg:text-lg overflow-auto h-full">
               {responsedata}
             </ReactMarkdown>
           )}
