@@ -10,25 +10,25 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const chatModel = new ChatGoogleGenerativeAI({
-  modelName: "gemini-pro",
-  maxOutputTokens: 2048,
-});
+// const chatModel = new ChatGoogleGenerativeAI({
+//   modelName: "gemini-pro",
+//   maxOutputTokens: 2048,
+// });
 
-const prompt = ChatPromptTemplate.fromMessages([
-  ["system", "You are a resume writer"],
-  ["user", "{input}"],
-]);
+// const prompt = ChatPromptTemplate.fromMessages([
+//   ["system", "You are a cover letter writer"],
+//   ["user", "{input}"],
+// ]);
 
-const chain = prompt.pipe(chatModel);
+// const chain = prompt.pipe(chatModel);
 
 app.post("/create", async (req, res) => {
   console.log(req.body);
   const input_data = req.body.prompt_data;
-  const data = await chain.invoke({
-    input: input_data,
-  });
-  res.send(data);
+  // const data = await chain.invoke({
+  //   input: input_data,
+  // });
+  res.send(input_data);
 });
 
 app.listen(8080, (req, res) => {
