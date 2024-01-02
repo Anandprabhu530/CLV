@@ -51,13 +51,16 @@ const Builder = () => {
   }, [formerrors]);
 
   const fetchthedata = async () => {
-    const response = await fetch("http://localhost:8080/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt_data: formdata }),
-    }).then((res) => res.json());
+    const response = await fetch(
+      "https://master--mellifluous-lolly-9b2c7e.netlify.app/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt_data: formdata }),
+      }
+    ).then((res) => res.json());
     console.log(response.kwargs.content);
     setresponsedata(response.kwargs.content);
     setIssubmit(false);
