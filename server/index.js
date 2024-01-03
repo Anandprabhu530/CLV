@@ -1,9 +1,12 @@
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const ChatGoogleGenerativeAI =
+  require("@langchain/google-genai").ChatGoogleGenerativeAI;
+const ChatPromptTemplate =
+  require("@langchain/core/prompts").ChatPromptTemplate;
 
+dotenv.config();
 const app = express();
 dotenv.config();
 app.use(cors());
@@ -39,7 +42,6 @@ app.post("/create", async (req, res) => {
     input_data.previous_company ? input_data.previous_company : "undefined"
   }, 
   consider undefined as not applicable.Only take the given inputs.Don't generate other fields.Replace the fields with above data.Generate cover letter only.`;
-  console.log("processing");
   const data = await chain.invoke({
     input: processed_data,
   });
